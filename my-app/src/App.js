@@ -14,7 +14,6 @@ function App() {
   } = useAuth0();
   return (
     <div className="App">
-      {console.log(loginWithRedirect,getAccessTokenSilently, isAuthenticated,user,error,"isAuthenticated")}
      <Appointment/>
     </div>
   );

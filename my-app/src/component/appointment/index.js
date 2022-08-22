@@ -11,10 +11,16 @@ const Appointment = () => {
     useEffect(()=>{
         let request = {
             url: `https://api.preview.platform.athenahealth.com/v1/24451/appointments/open?reasonid=&bypassscheduletimechecks=true&departmentid=1&startdate=08%2F18%2F2022&ignoreschedulablepermission=true`,
-            token: ` Bearer jDuLE9ZQFxLlQO0U7qQsiXOgA2Do`
+            token: `Bearer br94d6eEBtk6kaLjjLiTsccv9sdP`
         }
         api.getAuth(request).then(data => {
-            setData(data.data)
+            console.log(data.data.appointments, "data check ")
+            if(data.data.appointments.length>0){
+                console.log(data.data.appointments,"data in if condition")
+                setData([...data.data.appointments])
+                console.log(information,"information in if condition")
+            }
+           
         })
 
     },[])
@@ -22,6 +28,9 @@ const Appointment = () => {
    
 
     return (<>
+    {
+        console.log(information,"information")
+    }
         <div className="container">
             <div className="leftDasbord">
                 <p className="SearchName"> Search </p>
@@ -125,8 +134,9 @@ const Appointment = () => {
                     </div>
                     <div style={{ width: "100%", border: "1px solid red" }}></div>
                     <div>
+                      
                         {
-                        information && information.length>0&&    information.appointments.map((item, index)=>{
+                        information&& information.length>0 &&  information.map((item, index)=>{
                                 return(<>
                                 <div className="cardData">
                                     <span style={{ padding: "10px", paddingTop: "10px", paddingBottom: "10px" }}>
