@@ -10,7 +10,7 @@ const Appointment = () => {
 
     useEffect(()=>{
         let request = {
-            url: `https://api.preview.platform.athenahealth.com/v1/24451/appointments/open?reasonid=&bypassscheduletimechecks=true&departmentid=1&startdate=08%2F18%2F2022&ignoreschedulablepermission=true`,
+            url: `https://api.preview.platform.athenahealth.com/v1/24451/appointments/open?practiceid=24451&departmentid=1&reasonid=-1`,
             token: `Bearer br94d6eEBtk6kaLjjLiTsccv9sdP`
         }
         api.getAuth(request).then(data => {
