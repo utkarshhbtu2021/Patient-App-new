@@ -7,30 +7,38 @@ import api from "../../api";
 const Appointment = () => {
     const [value, onChange] = useState(new Date());
     const [information, setData] = useState([])
+    const [rawInformation, setRawData] = useState([])
 
-    useEffect(()=>{
+    useEffect(() => {
         let request = {
-            url: `https://api.preview.platform.athenahealth.com/v1/24451/appointments/open?practiceid=24451&departmentid=1&reasonid=-1`,
-            token: `Bearer br94d6eEBtk6kaLjjLiTsccv9sdP`
-        }
+            url: `https://api.preview.platform.athenahealth.com/v1/24451/appointments/open?practiceid=24451&departmentid=1&reasonid=-1`
+       }
         api.getAuth(request).then(data => {
             console.log(data.data.appointments, "data check ")
-            if(data.data.appointments.length>0){
-                console.log(data.data.appointments,"data in if condition")
-                setData([...data.data.appointments])
-                console.log(information,"information in if condition")
+            if (data.data.appointments.length > 0) {
+                console.log(data.data.appointments, "data in if condition")
+                setRawData([...data.data.appointments])
+                console.log(information, "information in if condition")
             }
-           
         })
 
-    },[])
+    }, [])
 
-   
+    useEffect(() => {
+        const yyyy = value.getFullYear();
+        let mm = value.getMonth() + 1; // Months start at 0!
+        let dd = value.getDate();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+
+        const date = mm + '/' + dd + '/' + yyyy;
+        const data = rawInformation.filter(el => el.date === date)
+        setData([...data])
+    }, [value, rawInformation]);
 
     return (<>
-    {
-        console.log(information,"information")
-    }
+
         <div className="container">
             <div className="leftDasbord">
                 <p className="SearchName"> Search </p>
@@ -74,11 +82,11 @@ const Appointment = () => {
                     </form>
                 </div>
                 <div>
-                    <p style={{fontSize:"12px", color:"#0097F9"}}> What reason should i choose ?</p>
+                    <p style={{ fontSize: "12px", color: "#0097F9" }}> What reason should i choose ?</p>
                 </div>
                 <div>
                     <div style={{ margin: "20px" }}>
-                        <Calendar onChange={onChange} value={value} />
+                        <Calendar onChange={onChange} value={value} minDate={new Date()} />
                     </div>
                 </div>
                 <div style={{ borderBottom: "1px solid red", display: "flex", flexDirection: "row", justifyContent: "space-between", margin: "20px" }}>
@@ -124,35 +132,35 @@ const Appointment = () => {
 
                 </div>
                 <div className="mainContainer">
-                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" ,paddingLeft:"10px", paddingRight:"10px" }}>
+                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", paddingLeft: "10px", paddingRight: "10px" }}>
                         <p className="topHeaderLeft">
                             OOLTEWAH CLINIC (EDT)
                         </p>
-                        <p className="topHeaderLeft"> 
+                        <p className="topHeaderLeft">
                             5545 LITTLRE DEBBIE PKWY OOLTEWAH , TN 37363-4357
                         </p>
                     </div>
                     <div style={{ width: "100%", border: "1px solid red" }}></div>
                     <div>
-                      
-                        {
-                        information&& information.length>0 &&  information.map((item, index)=>{
-                                return(<>
-                                <div className="cardData">
-                                    <span style={{ padding: "10px", paddingTop: "10px", paddingBottom: "10px" }}>
 
-                                        <div class="tooltip">{item.starttime}
-                                            <span class="tooltiptext">
-                                                {item.patientappointmenttypename} <br />
-                                                {item.date}
-                                            </span>
-                                        </div>
-                                    </span>
-                                </div>
+                        {
+                            information && information.length > 0 && information.map((item, index) => {
+                                return (<>
+                                    <div className="cardData">
+                                        <span style={{ padding: "10px", paddingTop: "10px", paddingBottom: "10px" }}>
+
+                                            <div class="tooltip">{item.starttime}
+                                                <span class="tooltiptext">
+                                                    {item.patientappointmenttypename} <br />
+                                                    {item.date}
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </div>
                                 </>)
                             })
                         }
-                        
+
                     </div>
 
                 </div>
