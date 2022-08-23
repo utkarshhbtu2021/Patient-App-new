@@ -1,36 +1,49 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState  } from "react"
 import "./appointment.css";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-// import { data } from "../../dummyresponse/appointmentdata"
 import api from "../../api";
+import { useContext } from "react";
+import patientContext from "../../context/patientDetails/patientContext"
+import { Link } from 'react-router-dom';
+import Loader from "react-js-loader";
+
+
 const Appointment = () => {
+   const a = useContext(patientContext)
     const [value, onChange] = useState(new Date());
     const [information, setData] = useState([])
-
+    const [patientType , setPatientType] = useState("");
+    const[specialty , setSpecialty] = useState("");
+    const [reason , setReason]= useState("COVID-19 Testing");
+    const [provider, setProvider] = useState("");
+    const [location , setLoction]= useState("OOLTEWAH CLINIC (EDT)");
+    const [timeData, setTimeData] = useState("");
     useEffect(()=>{
         let request = {
             url: `https://api.preview.platform.athenahealth.com/v1/24451/appointments/open?practiceid=24451&departmentid=1&reasonid=-1`,
-            token: `Bearer br94d6eEBtk6kaLjjLiTsccv9sdP`
+            token: `Bearer 0ruyEcd85cY1TC9TS2cbSdJ5wY0G`
         }
-        api.getAuth(request).then(data => {
-            console.log(data.data.appointments, "data check ")
-            if(data.data.appointments.length>0){
-                console.log(data.data.appointments,"data in if condition")
+        api.getAuth(request).then(data => {    
+            if(data.data.appointments.length>0){     
                 setData([...data.data.appointments])
-                console.log(information,"information in if condition")
+                
             }
            
         })
 
     },[])
 
+    const UpdateData =(starttime)=>{
+        setTimeData(starttime)
+        a.update({location:location,timeData:timeData , reason:reason , value:value.toDateString()})
+       
+    }
    
 
     return (<>
-    {
-        console.log(information,"information")
-    }
+
+ 
         <div className="container">
             <div className="leftDasbord">
                 <p className="SearchName"> Search </p>
@@ -38,11 +51,11 @@ const Appointment = () => {
                     <p>Patient type Required</p>
                     <form style={{ border: '1px solid #EDEAEA', borderLeft: '8px solid #0097F9', backgroundColor: 'rgba(255, 255, 255, 1)', borderRadius: '5px' }} >
 
-                        <select className="Select_status">
-                            <option>data1</option>
-                            <option>data2</option>
-                            <option>data3</option>
-                            <option>data4</option>
+                        <select className="Select_status" onChange={(event)=>{setPatientType(event.target.value)}}>
+                            <option>-Select-</option>
+                            <option>Existing</option>
+                            <option>New</option>
+                           
                         </select>
 
                     </form>
@@ -51,11 +64,9 @@ const Appointment = () => {
                     <p>Specialty- Required</p>
                     <form style={{ border: '1px solid #EDEAEA', borderLeft: '8px solid #0097F9', backgroundColor: 'rgba(255, 255, 255, 1)', borderRadius: '5px' }} >
 
-                        <select className="Select_status">
-                            <option>data1</option>
-                            <option>data2</option>
-                            <option>data3</option>
-                            <option>data4</option>
+                        <select className="Select_status"  onChange={(event)=>{setSpecialty(event.target.value)}}>
+                            <option>General Practice</option>
+                            
                         </select>
 
                     </form>
@@ -64,11 +75,9 @@ const Appointment = () => {
                     <p>Reason for visit- Required</p>
                     <form style={{ border: '1px solid #EDEAEA', borderLeft: '8px solid #0097F9', backgroundColor: 'rgba(255, 255, 255, 1)', borderRadius: '5px' }} >
 
-                        <select className="Select_status">
-                            <option>data1</option>
-                            <option>data2</option>
-                            <option>data3</option>
-                            <option>data4</option>
+                        <select className="Select_status" onChange={(event)=>{setReason(event.target.value)}}>
+                            <option>COVID-19 Testing</option>
+                         
                         </select>
 
                     </form>
@@ -89,15 +98,14 @@ const Appointment = () => {
                         <p style={{ color: "#0097F9" }}> Clear Filters</p>
                     </div>
                 </div>
+ 
                 <div className="select_bar">
                     <p>Provider</p>
                     <form style={{ border: '1px solid #EDEAEA', borderLeft: '8px solid #0097F9', backgroundColor: 'rgba(255, 255, 255, 1)', borderRadius: '5px' }} >
 
-                        <select className="Select_status">
-                            <option>data1</option>
-                            <option>data2</option>
-                            <option>data3</option>
-                            <option>data4</option>
+                        <select className="Select_status" onChange={(event)=>{setProvider(event.target.value)}}>
+                            <option>COVID-19 Testing</option>
+                           
                         </select>
 
                     </form>
@@ -106,11 +114,9 @@ const Appointment = () => {
                     <p>Location</p>
                     <form style={{ border: '1px solid #EDEAEA', borderLeft: '8px solid #0097F9', backgroundColor: 'rgba(255, 255, 255, 1)', borderRadius: '5px' }} >
 
-                        <select className="Select_status">
-                            <option>data1</option>
-                            <option>data2</option>
-                            <option>data3</option>
-                            <option>data4</option>
+                        <select className="Select_status" onChange={(event)=>{setLoction(event.target.value)}}>
+                            <option>OOLTEWAH CLINIC</option>
+                            
                         </select>
 
                     </form>
@@ -120,25 +126,26 @@ const Appointment = () => {
 
             <div style={{ display: "flex", flexDirection: "column", width: "75%" }}>
                 <div className="mainheader">
-                    <p> Tue., Aug., 16 </p>
+                    <p> {value.toDateString()} </p>
 
                 </div>
                 <div className="mainContainer">
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" ,paddingLeft:"10px", paddingRight:"10px" }}>
                         <p className="topHeaderLeft">
-                            OOLTEWAH CLINIC (EDT)
+                           {location}
                         </p>
                         <p className="topHeaderLeft"> 
                             5545 LITTLRE DEBBIE PKWY OOLTEWAH , TN 37363-4357
                         </p>
                     </div>
+                    <p>{reason}</p>
                     <div style={{ width: "100%", border: "1px solid red" }}></div>
                     <div>
                       
                         {
-                        information&& information.length>0 &&  information.map((item, index)=>{
+                        information&& information.length>0?   information.map((item, index)=>{
                                 return(<>
-                                <div className="cardData">
+                                <Link to='/schedule/'><div className="cardData" onClick={()=>{UpdateData(item.starttime)}}>
                                     <span style={{ padding: "10px", paddingTop: "10px", paddingBottom: "10px" }}>
 
                                         <div class="tooltip">{item.starttime}
@@ -149,8 +156,10 @@ const Appointment = () => {
                                         </div>
                                     </span>
                                 </div>
+                                </Link>
                                 </>)
-                            })
+                            }):
+                            <Loader type="bubble-scale" bgColor={"red"} title={"bubble-scale"} color={'#FFFFFF'} size={100} />
                         }
                         
                     </div>
@@ -160,7 +169,10 @@ const Appointment = () => {
 
 
         </div>
+        
     </>)
 
 }
+
+
 export default Appointment;
