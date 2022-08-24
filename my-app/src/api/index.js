@@ -15,7 +15,7 @@ const api = {
         request.url,
         request.data,
         {
-            headers: { "Authorization": "Basic MG9hZHkxdWV3ZzFDMjZQMVgyOTc6QXpXMUJfRTNQdWlqSGpocU10dGU1Rm1WOHlnZ3djMjA5cURxS3hqOQ==", "accept": "application/json"}
+            headers: { "Authorization": request.token, 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8', "Accept":"*/*","Accept-Encoding":"gzip, deflate, br"}
         }
 
     ),

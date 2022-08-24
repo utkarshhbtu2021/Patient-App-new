@@ -5,11 +5,12 @@ import 'react-calendar/dist/Calendar.css';
 import api from "../../api";
 import { useContext } from "react";
 import patientContext from "../../context/patientDetails/patientContext"
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Loader from "react-js-loader";
 
 
 const Appointment = () => {
+    const history = useHistory()
    const a = useContext(patientContext)
     const [value, onChange] = useState(new Date());
     const [information, setData] = useState([])
@@ -22,7 +23,7 @@ const Appointment = () => {
     useEffect(()=>{
         let request = {
             url: `https://api.preview.platform.athenahealth.com/v1/24451/appointments/open?practiceid=24451&departmentid=1&reasonid=-1`,
-            token: `Bearer 0ruyEcd85cY1TC9TS2cbSdJ5wY0G`
+            token: `Bearer Qb5LCAMoNtXX3P1aKOcoGL2zMXa4`
         }
         api.getAuth(request).then(data => {    
             if(data.data.appointments.length>0){     
@@ -34,10 +35,15 @@ const Appointment = () => {
 
     },[])
 
-    const UpdateData =(starttime)=>{
+    const UpdateData =(starttime)=>{  
+        console.log(starttime,"starttime")
         setTimeData(starttime)
-        a.update({location:location,timeData:timeData , reason:reason , value:value.toDateString()})
-       
+        a.update({location:location,timeData:starttime , reason:reason , value:value.toDateString()})  
+setTimeout(()=>{
+    history.push("/schedule/")
+}, 1000)
+          
+        
     }
    
 
@@ -145,7 +151,7 @@ const Appointment = () => {
                         {
                         information&& information.length>0?   information.map((item, index)=>{
                                 return(<>
-                                <Link to='/schedule/'><div className="cardData" onClick={()=>{UpdateData(item.starttime)}}>
+                                <div className="cardData" onClick={()=>{UpdateData(item.starttime)}}>
                                     <span style={{ padding: "10px", paddingTop: "10px", paddingBottom: "10px" }}>
 
                                         <div class="tooltip">{item.starttime}
@@ -156,7 +162,7 @@ const Appointment = () => {
                                         </div>
                                     </span>
                                 </div>
-                                </Link>
+                                
                                 </>)
                             }):
                             <Loader type="bubble-scale" bgColor={"red"} title={"bubble-scale"} color={'#FFFFFF'} size={100} />
