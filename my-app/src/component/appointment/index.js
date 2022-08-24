@@ -23,7 +23,7 @@ const Appointment = () => {
     useEffect(()=>{
         let request = {
             url: `https://api.preview.platform.athenahealth.com/v1/24451/appointments/open?practiceid=24451&departmentid=1&reasonid=-1`,
-            token: `Bearer Qb5LCAMoNtXX3P1aKOcoGL2zMXa4`
+            
         }
         api.getAuth(request).then(data => {    
             if(data.data.appointments.length>0){     
@@ -35,10 +35,9 @@ const Appointment = () => {
 
     },[])
 
-    const UpdateData =(starttime)=>{  
-        console.log(starttime,"starttime")
+    const UpdateData =(starttime, appointmentid , appointmenttypeid)=>{  
         setTimeData(starttime)
-        a.update({location:location,timeData:starttime , reason:reason , value:value.toDateString()})  
+        a.update({location:location,timeData:starttime , reason:reason , appointmenttypeid:appointmenttypeid, appointmentid:appointmentid, value:value.toDateString()})  
 setTimeout(()=>{
     history.push("/schedule/")
 }, 1000)
@@ -151,7 +150,7 @@ setTimeout(()=>{
                         {
                         information&& information.length>0?   information.map((item, index)=>{
                                 return(<>
-                                <div className="cardData" onClick={()=>{UpdateData(item.starttime)}}>
+                                <div className="cardData" onClick={()=>{UpdateData(item.starttime ,item.appointmentid, item.appointmenttypeid)}}>
                                     <span style={{ padding: "10px", paddingTop: "10px", paddingBottom: "10px" }}>
 
                                         <div class="tooltip">{item.starttime}

@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import patientContext from "../../context/patientDetails/patientContext";
 import api from "../../api";
-
+import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 
-const ScheduleAppointment = (props) => {
+const ScheduleAppointment = () => {
+    const history = useHistory()
     const a = useContext(patientContext)
     const [dateData, setDateData] = useState(1111)
     const [firstname, setFirstname] = useState("")
@@ -12,6 +13,9 @@ const ScheduleAppointment = (props) => {
     const [dob, setDob] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
+    const [insurance, setInsurance] = useState("")
+    const [additional, setAdditional] = useState("")
+    const [sex, setSex]= useState("male")
 
     var details = {
         "firstname": firstname,
@@ -23,8 +27,9 @@ const ScheduleAppointment = (props) => {
         "ssn": 178988977,
 
     }
+  
     const validation = ()=>{
-        if(firstname.length >0 && lastname.length>0 && dob.length> 0 && email.length> 0){
+        if(firstname.length >0 && lastname.length>0 && dob.length> 0 && email.length> 0 && additional.length>0 && insurance.length>0 ){
             return true
         }
         else{
@@ -32,32 +37,39 @@ const ScheduleAppointment = (props) => {
         }
     }
 
-    var formBody = [];
-    for (var property in details) {
-        var encodedKey = encodeURIComponent(property);
-        var encodedValue = encodeURIComponent(details[property]);
-        formBody.push(encodedKey + "=" + encodedValue);
-    }
-
+   const Preview=()=>{
+    setTimeout(()=>{
+        history.push("/")
+    }, 1000)
+   }
 
     useEffect(() => {
         
     }, [])
 
     const ScheduleApi = () => {
-        if(validation){
+        
+        if(validation()){
+            var formBody = [];
+            for (var property in details) {
+                var encodedKey = encodeURIComponent(property);
+                var encodedValue = encodeURIComponent(details[property]);
+                formBody.push(encodedKey + "=" + encodedValue);
+            }
+        
         let formBodydata = formBody.join("&");
         let request = {
             url: `https://api.preview.platform.athenahealth.com/v1/24451/patients`,
-            token: `Bearer Qb5LCAMoNtXX3P1aKOcoGL2zMXa4`,
             data: formBodydata
         }
 
         api
             .postAuth(request)
             .then((response) => {
-
-                console.log(response, "response")
+                a.update({...a.patientDetails, dob:dob, sex:sex, email:email,phone:phone,firstname:firstname,lastname:lastname  ,insurance:insurance, additional:additional , patientid:response.data[0].patientid})  
+                setTimeout(()=>{
+                    history.push("/review")
+                }, 1000)
             })
             .catch((error) => {
             })
@@ -65,9 +77,6 @@ const ScheduleAppointment = (props) => {
 }
 
     return (<>
-        {
-            console.log(a, "check a data ")
-        }
         <p> Schedule Appointment </p>
         <div>
             <div>
@@ -92,7 +101,7 @@ const ScheduleAppointment = (props) => {
                     <label>
                         Sex
                     </label>
-                    <select >
+                    <select onChange={(e)=>setSex(e.target.value)} >
                         <option>male</option>
                         <option>female</option>
 
@@ -134,15 +143,15 @@ const ScheduleAppointment = (props) => {
 
                         <p> <p>{a.patientDetails.location}</p></p>
                         <p>Insurance - Required</p>
-                        <input />
+                        <input  value={insurance} onChange={(e) => { setInsurance(e.target.value) }} />
                         <p>Additional notes - Required</p>
-                        <input />
+                        <input value={additional} onChange={(e) => { setAdditional(e.target.value) }}  />
 
 
                     </div>
                 </div>
                 <div>
-                    <button> Previous</button>
+                    <button onClick={()=>{Preview()}}> Previous</button>
                     <button onClick={()=>{ScheduleApi()}}> Next</button>
                 </div>
 
