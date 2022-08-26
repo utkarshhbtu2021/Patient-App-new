@@ -31,7 +31,7 @@ const ReviewAppoinment = () => {
         }
         let formBodydata = formBody.join("&");
         let request = {
-            url: `https://api.preview.platform.athenahealth.com/v1/24451/appointments/${a.patientDetails.appointmentid}`,
+            url: `https://appointmentapi.apatternclinic.com/v1/24451/appointments/${a.patientDetails.appointmentid}`,
             data: formBodydata
           }
           api
