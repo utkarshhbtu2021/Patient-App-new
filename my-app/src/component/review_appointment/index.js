@@ -3,6 +3,7 @@ import reCAPTCHA from "react-google-recaptcha"
 import React, { useContext, useEffect, useState } from "react";
 import patientContext from "../../context/patientDetails/patientContext";
 import api from "../../api";
+import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 const ReviewAppoinment = () => {
     const history = useHistory()
@@ -30,14 +31,17 @@ const ReviewAppoinment = () => {
         }
         let formBodydata = formBody.join("&");
         let request = {
-            url: `https://api.preview.platform.athenahealth.com/v1/24451/appointments/2781`,
+            url: `https://api.preview.platform.athenahealth.com/v1/24451/appointments/${a.patientDetails.appointmentid}`,
             data: formBodydata
           }
           api
             .putAuth(request)
             .then((data) => {
-            console.log("success data",data)
-            alert("Appointment booked")
+            if(data.status==200)
+            {
+            swal("success","Appointment Booked!!", "success")
+            history.push("/")
+        }else{swal("Appointment not Booked!", "error")}
             })
             .catch((error) => {})
     }
