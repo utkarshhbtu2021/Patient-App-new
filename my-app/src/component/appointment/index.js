@@ -22,7 +22,7 @@ const Appointment = () => {
     const [timeData, setTimeData] = useState("");
     useEffect(()=>{
         let request = {
-            url: `https://api.preview.platform.athenahealth.com/v1/24451/appointments/open?practiceid=24451&departmentid=1&reasonid=-1`,
+            url: `https://appointmentapi.apatternclinic.com/v1/24451/appointments/open?practiceid=24451&departmentid=1&reasonid=-1`,
             
         }
         api.getAuth(request).then(data => {    

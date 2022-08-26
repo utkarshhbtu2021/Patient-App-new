@@ -59,7 +59,7 @@ const ScheduleAppointment = () => {
         
         let formBodydata = formBody.join("&");
         let request = {
-            url: `https://api.preview.platform.athenahealth.com/v1/24451/patients`,
+            url: `https://appointmentapi.apatternclinic.com/v1/24451/patients`,
             data: formBodydata
         }
 
