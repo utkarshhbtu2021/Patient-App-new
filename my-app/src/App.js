@@ -10,7 +10,7 @@ function App() {
 
   return (
 
-    <div className="App">
+    <main>
      {/* <Appointment/> */}
      {/* <ScheduleAppointment/> */}
      {/* <ReviewAppoinment/> */}
@@ -19,7 +19,7 @@ function App() {
       <Routes />
     
     </PatientState>
-    </div>
+    </main>
   );
 }
 

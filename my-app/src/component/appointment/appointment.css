@@ -86,7 +86,7 @@
     display: inline-block;
   }
   
-  .tooltip .tooltiptext {
+   .tooltiptext {
     visibility: hidden;
     width: 133px;
     background-color: black;

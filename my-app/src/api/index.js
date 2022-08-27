@@ -5,7 +5,7 @@ function getToken() {
         axios.request({
             url: "/oauth2/v1/token",
             method: "post",
-            baseURL: "https://api.preview.platform.athenahealth.com/",
+            baseURL: "https://appointmentapi.apatternclinic.com/",
             auth: {
                 username: "0oady1uewg1C26P1X297",
                 password: "AzW1B_E3PuijHjhqMtte5FmV8yggwc209qDqKxj9"
