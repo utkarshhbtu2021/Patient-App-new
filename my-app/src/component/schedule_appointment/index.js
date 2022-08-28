@@ -114,8 +114,8 @@ const emailValidation=()=>{
 	}, [])
 
 	const ScheduleApi = () => {
-		setButtonloading(true)
 		if (validation()) {
+			setButtonloading(true)
 			var formBody = [];
 			for (var property in details) {
 				var encodedKey = encodeURIComponent(property);
