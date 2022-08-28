@@ -21,13 +21,16 @@ const Appointment = () => {
     const [provider, setProvider] = useState("");
     const [location, setLoction] = useState("OOLTEWAH CLINIC (EDT)");
     const [timeData, setTimeData] = useState("");
+    const [loading , setLoading]= useState(false)
    
     useEffect(() => {
+        setLoading(true)
         let request = {
             url: `https://appointmentapi.apatternclinic.com/v1/24451/appointments/open?practiceid=24451&departmentid=1&reasonid=-1`,
 
         }
         api.getAuth(request).then(data => {
+            setLoading(false)
             if (data.data.appointments.length > 0) {
                 setRawData([...data.data.appointments])
             }
@@ -180,6 +183,9 @@ const Appointment = () => {
 
                             <div class="row mt-5">
                                 <div className="col-md-12">
+                                    {
+                                      loading && <Loader type="bubble-scale" bgColor={"#0c71c3"} title={"bubble-scale"} color={'#FFFFFF'} size={100} />
+                                    }
 
                                     {
                                         information && information.length > 0 ? information.map((item, index) => {
@@ -202,7 +208,9 @@ const Appointment = () => {
                                                 </div>
                                             </>)
                                         }) :
-                                            <Loader type="bubble-scale" bgColor={"#0c71c3"} title={"bubble-scale"} color={'#FFFFFF'} size={100} />
+                                        (loading==false &&
+                                        <p>NO Shedule Found</p>)
+                                           
                                     }
 
 
