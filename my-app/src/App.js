@@ -10,16 +10,12 @@ function App() {
 
   return (
 
-    <main>
-     {/* <Appointment/> */}
-     {/* <ScheduleAppointment/> */}
-     {/* <ReviewAppoinment/> */}
      <PatientState>
      
       <Routes />
     
     </PatientState>
-    </main>
+    
   );
 }
 

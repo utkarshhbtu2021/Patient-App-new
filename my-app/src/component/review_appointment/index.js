@@ -131,9 +131,8 @@ const ReviewAppoinment = () => {
             .catch((error) => {})
     }
     return (<>
-    {
-        console.log(a ,"a data ")
-    }
+
+			<main>
              <div className="container-fluid">
 
 <div className="row">
@@ -367,6 +366,7 @@ const ReviewAppoinment = () => {
 	</div>
 	</div>
 </div>
+</main>
 
     </>)
 }

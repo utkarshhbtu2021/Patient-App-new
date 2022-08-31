@@ -989,14 +989,14 @@ img{object-fit:cover}
 .achievement.bg svg{fill:var(--separator-light)}
 .achievement.level svg{fill:var(--primary)}
 .absolute-profile{top:-6.5rem}
-:root{--transition-time:400ms;--transition-time-long:1000ms;--transition-time-short:200ms;--nav-size-slim:0rem;--nav-size:25rem;--footer-size:2.5rem;--input-height:2.25rem;--small-title-height:2rem;--font:"Nunito Sans",sans-serif;--font-heading:"Montserrat",sans-serif}
+:root{--transition-time:400ms;--transition-time-long:1000ms;--transition-time-short:200ms;--nav-size-slim:0rem;--nav-size:22rem;--footer-size:2.5rem;--input-height:2.25rem;--small-title-height:2rem;--font:"Nunito Sans",sans-serif;--font-heading:"Montserrat",sans-serif}
 html[data-radius=rounded]{--border-radius-lg:16px;--border-radius-md:10px;--border-radius-sm:6px;--border-radius-xl:50px}
 html[data-radius=standard]{--border-radius-lg:6px;--border-radius-md:4px;--border-radius-sm:3px;--border-radius-xl:4px}
 html[data-radius=flat]{--border-radius-lg:0;--border-radius-sm:0;--border-radius-md:0;--border-radius-xl:0}
 :root{--card-spacing:2rem;--card-spacing-sm:1.25rem;--card-spacing-xs:0.75rem;--card-spacing-sm-horizontal:1.75rem 1.25rem;--card-spacing-sm-vertical:1.25rem 1.75rem;--main-spacing-horizontal:1rem;--main-spacing-vertical:2rem;--title-spacing:1.25rem}
 @media (max-width:1199.98px){:root{--main-spacing-horizontal:2rem}
 }
-@media (max-width:991.98px){:root{--nav-size-slim:1rem;--title-spacing:1rem;--footer-size:4rem}
+@media (max-width:991.98px){:root{--nav-size-slim:4rem;--title-spacing:1rem;--footer-size:4rem}
 }
 @media (max-width:767.98px){:root{--card-spacing:1.75rem;--footer-size:3rem;--main-spacing-horizontal:1.25rem;--main-spacing-vertical:1.25rem}
 }
@@ -2705,7 +2705,7 @@ html[data-footer=true][data-fullpage=true] #root,html[data-footer=true][data-ful
 html[data-footer=true][data-fullpage=true] main .container{height:100%}
 html[data-placement=horizontal] section.scroll-section{scroll-margin-top:calc(var(--nav-size-slim) + calc(var(--main-spacing-horizontal)/ 2))}
 html[data-placement=vertical] section.scroll-section{scroll-margin-top:var(--main-spacing-vertical)}
-html[data-placement=horizontal] .nav-container,html[data-placement=vertical] .nav-container{position:fixed;top:0;bottom:0;z-index:1001;background-repeat:no-repeat;background-size:cover;width:var(--nav-size);background-position:center;
+html[data-placement=horizontal] .nav-container,html[data-placement=vertical] .nav-container{position:fixed;top:-18px;bottom:0;z-index:1001;background-repeat:no-repeat;background-size:cover;width:var(--nav-size);background-position:center;
 background-color: #0c71c3 
 }
 html[data-placement=horizontal] .nav-container .nav-shadow,html[data-placement=vertical] .nav-container .nav-shadow{width:100%;height:100%;position:absolute;box-shadow:var(--menu-shadow);pointer-events:none;z-index:1001}
@@ -2750,7 +2750,7 @@ html[data-placement=horizontal] .nav-container .dropdown-menu,html[data-placemen
 html[data-placement=horizontal] .nav-container .dropdown-menu a,html[data-placement=vertical] .nav-container .dropdown-menu a{color:var(--alternate)}
 html[data-placement=horizontal] .nav-container .dropdown-menu.wide,html[data-placement=vertical] .nav-container .dropdown-menu.wide{width:calc(var(--nav-size) - calc(var(--main-spacing-vertical)));padding:15px 10px 15px 10px}
 html[data-placement=horizontal] .nav-container{height:var(--nav-size-slim);right:0;left:0;width:100%;justify-content:center;flex-direction:row;padding-left:var(--main-spacing-horizontal);padding-right:var(--main-spacing-horizontal);border-top-right-radius:0;border-top-left-radius:0;border-bottom-right-radius:var(--border-radius-lg);border-bottom-left-radius:var(--border-radius-lg)}
-html[data-placement=horizontal] .nav-container .nav-content{flex-direction:row;align-items:center;width:100%}
+html[data-placement=horizontal] .nav-container .nav-content{flex-direction:column;align-items:center;width:100%}
 html[data-placement=horizontal] .nav-container .nav-shadow{border-top-right-radius:0;border-top-left-radius:0;border-bottom-right-radius:var(--border-radius-lg);border-bottom-left-radius:var(--border-radius-lg)}
 html[data-placement=horizontal] .nav-container .menu-container{margin:initial;height:100%}
 html[data-placement=horizontal] .nav-container .menu-container .menu{margin-left:5rem;margin-right:2rem;height:100%}
@@ -2809,8 +2809,8 @@ html[data-placement=horizontal] .nav-container.mobile-side-ready .nav-content .u
 html[data-placement=horizontal] .nav-container.mobile-side-ready .nav-content .user-container .user .name,html[data-placement=vertical] .nav-container .nav-content .user-container .user .name,html[data-placement=vertical] .nav-container.mobile-side-ready .nav-content .user-container .user .name{margin-right:0}
 html[data-placement=horizontal] .nav-container.mobile-side-ready .nav-content .user-container .user .profile,html[data-placement=vertical] .nav-container .nav-content .user-container .user .profile,html[data-placement=vertical] .nav-container.mobile-side-ready .nav-content .user-container .user .profile{order:initial;width:50px;height:50px;margin-bottom:5px}
 html[data-placement=horizontal] .nav-container.mobile-side-ready .nav-content .user-container .dropdown-menu,html[data-placement=vertical] .nav-container .nav-content .user-container .dropdown-menu,html[data-placement=vertical] .nav-container.mobile-side-ready .nav-content .user-container .dropdown-menu{margin-top:10px}
-html[data-placement=horizontal] .nav-container.mobile-side-ready .nav-content .menu-container,html[data-placement=vertical] .nav-container .nav-content .menu-container,html[data-placement=vertical] .nav-container.mobile-side-ready .nav-content .menu-container{display:flex!important;align-self:flex-start;order:3;margin-top:2rem;margin-bottom:1rem;width:19rem;margin-left:0rem;margin-right:1rem}
-html[data-placement=horizontal] .nav-container.mobile-side-ready .nav-content .menu-container .menu,html[data-placement=vertical] .nav-container .nav-content .menu-container .menu,html[data-placement=vertical] .nav-container.mobile-side-ready .nav-content .menu-container .menu{width:100%;margin-left:0;margin-right:0;padding-left:1rem;padding-right:1rem;cursor:pointer}
+html[data-placement=horizontal] .nav-container.mobile-side-ready .nav-content .menu-container,html[data-placement=vertical] .nav-container .nav-content .menu-container,html[data-placement=vertical] .nav-container.mobile-side-ready .nav-content .menu-container{display:flex!important;align-self:center;order:3;margin-top:2rem;margin-bottom:1rem;width:21rem;margin-left:0rem;margin-right:0}
+html[data-placement=horizontal] .nav-container.mobile-side-ready .nav-content .menu-container .menu,html[data-placement=vertical] .nav-container .nav-content .menu-container .menu,html[data-placement=vertical] .nav-container.mobile-side-ready .nav-content .menu-container .menu{width:100%;margin-left:0;margin-right:0;padding-left:0.5rem;padding-right:1rem;cursor:pointer}
 html[data-placement=horizontal] .nav-container.mobile-side-ready .nav-content .menu-container .menu ul,html[data-placement=vertical] .nav-container .nav-content .menu-container .menu ul,html[data-placement=vertical] .nav-container.mobile-side-ready .nav-content .menu-container .menu ul{box-shadow:initial!important;background:initial;position:initial;border-radius:initial;padding:initial;padding-left:2rem}
 html[data-placement=horizontal] .nav-container.mobile-side-ready .nav-content .menu-container .menu li a,html[data-placement=vertical] .nav-container .nav-content .menu-container .menu li a,html[data-placement=vertical] .nav-container.mobile-side-ready .nav-content .menu-container .menu li a{border-radius:var(--border-radius-lg);width:100%;color:var(--light-text);transition:color var(--transition-time);margin-bottom:.1rem;margin-top:.1rem}
 html[data-placement=horizontal] .nav-container.mobile-side-ready .nav-content .menu-container .menu li a .icon,html[data-placement=vertical] .nav-container .nav-content .menu-container .menu li a .icon,html[data-placement=vertical] .nav-container.mobile-side-ready .nav-content .menu-container .menu li a .icon{color:var(--light-text)}
@@ -2822,13 +2822,13 @@ html[data-placement=horizontal] .nav-container.mobile-side-ready .nav-content .m
 html[data-placement=horizontal] .nav-container.mobile-side-ready .nav-content .menu-container .menu>li li ul,html[data-placement=vertical] .nav-container .nav-content .menu-container .menu>li li ul,html[data-placement=vertical] .nav-container.mobile-side-ready .nav-content .menu-container .menu>li li ul{padding-left:1rem}
 html[data-placement=horizontal] .nav-container.mobile-side-ready .nav-content .menu-container .menu.show,html[data-placement=vertical] .nav-container .nav-content .menu-container .menu.show,html[data-placement=vertical] .nav-container.mobile-side-ready .nav-content .menu-container .menu.show{display:inline-block;display: inline-block;
     overflow: auto;
-    max-height: 447px;
+    /* max-height: 447px; */
     padding-bottom: 100px;}
 @media (max-width:1199.98px){html[data-placement=horizontal]:not([data-mobile=true]) .menu-icons .user .name,html[data-placement=horizontal]:not([data-mobile=true]) .user-container .user .name{display:none}
 }
 html[data-placement=horizontal]:not([data-mobile=true]) .language-switch-container .dropdown-menu,html[data-placement=horizontal]:not([data-mobile=true]) .menu-icons .dropdown-menu,html[data-placement=horizontal]:not([data-mobile=true]) .user-container .dropdown-menu{margin-top:.5rem}
-html[data-placement=horizontal][data-dimension=mobile] .nav-container .mobile-buttons-container,html[data-placement=vertical][data-dimension=mobile] .nav-container .mobile-buttons-container{margin-left:auto;height:100%;align-items:center;display:flex}
-html[data-placement=horizontal][data-dimension=mobile] .nav-container .mobile-buttons-container>a,html[data-placement=vertical][data-dimension=mobile] .nav-container .mobile-buttons-container>a{color:var(--light-text);padding:.25rem .5rem;height:100%;align-items:center;display:flex;border-bottom-left-radius:var(--border-radius-md);border-bottom-right-radius:var(--border-radius-md)}
+html[data-placement=horizontal][data-dimension=mobile] .nav-container .mobile-buttons-container,html[data-placement=vertical][data-dimension=mobile] .nav-container .mobile-buttons-container{margin-left:auto;height:100%;align-items:center;display:contents}
+html[data-placement=horizontal][data-dimension=mobile] .nav-container .mobile-buttons-container>a,html[data-placement=vertical][data-dimension=mobile] .nav-container .mobile-buttons-container>a{color:var(--light-text);padding:.25rem .5rem;height:100%;align-items:center;display:inline-block;border-bottom-left-radius:var(--border-radius-md);border-bottom-right-radius:var(--border-radius-md)}
 html[data-placement=horizontal][data-dimension=mobile] .nav-container .mobile-buttons-container>a:hover,html[data-placement=vertical][data-dimension=mobile] .nav-container .mobile-buttons-container>a:hover{box-shadow:0 4px 10px rgba(0,0,0,.03)!important;background:rgba(255,255,255,.05)}
 html[data-placement=horizontal][data-dimension=mobile] .nav-container .mobile-buttons-container>a i,html[data-placement=vertical][data-dimension=mobile] .nav-container .mobile-buttons-container>a i{font-size:36px}
 html[data-placement=horizontal][data-dimension=mobile] .nav-container .language-switch-container,html[data-placement=horizontal][data-dimension=mobile] .nav-container .menu-container,html[data-placement=horizontal][data-dimension=mobile] .nav-container .menu-icons,html[data-placement=horizontal][data-dimension=mobile] .nav-container .user-container,html[data-placement=vertical][data-dimension=mobile] .nav-container .language-switch-container,html[data-placement=vertical][data-dimension=mobile] .nav-container .menu-container,html[data-placement=vertical][data-dimension=mobile] .nav-container .menu-icons,html[data-placement=vertical][data-dimension=mobile] .nav-container .user-container{display:none!important}
@@ -2847,7 +2847,7 @@ html[data-placement=horizontal][data-dimension=mobile] .nav-container.mobile-top
 html[data-placement=horizontal][data-dimension=mobile] .nav-container.mobile-side-in,html[data-placement=vertical][data-dimension=mobile] .nav-container.mobile-side-in{transition-property:left;transition-duration:var(--transition-time-short);left:0}
 html[data-placement=horizontal][data-dimension=mobile] .nav-container.mobile-side-out,html[data-placement=vertical][data-dimension=mobile] .nav-container.mobile-side-out{transition-property:left;transition-duration:var(--transition-time-short);left:calc(var(--nav-size) * -1)}
 html[data-placement=horizontal][data-dimension=mobile] .nav-container.mobile-top-ready,html[data-placement=vertical][data-dimension=mobile] .nav-container.mobile-top-ready{transition-property:none;transition-duration:initial;top:-100px}
-html[data-placement=horizontal][data-dimension=mobile] .nav-container.mobile-top-in,html[data-placement=vertical][data-dimension=mobile] .nav-container.mobile-top-in{transition-property:top;transition-duration:var(--transition-time);top:0}
+html[data-placement=horizontal][data-dimension=mobile] .nav-container.mobile-top-in,html[data-placement=vertical][data-dimension=mobile] .nav-container.mobile-top-in{transition-property:top;transition-duration:var(--transition-time);top:-18px}
 html[data-placement=vertical][data-behaviour=unpinned]:not([data-menu-animate=show]) .nav-container{width:var(--nav-size-slim)}
 html[data-placement=vertical][data-behaviour=unpinned]:not([data-menu-animate=show]) .nav-container .nav-content .menu-container{align-self:center;overflow-x:hidden;width:80px;margin-left:0;margin-right:0}
 html[data-placement=vertical][data-behaviour=unpinned]:not([data-menu-animate=show]) .nav-container .nav-content .menu-container .menu a{white-space:nowrap}
@@ -3332,7 +3332,7 @@ html[data-show=true] .settings-button{opacity:1}
     border: 1px solid #0c71c3;
   overflow: hidden;
   float: left;
-	width: 100px;
+	width: 96px;
 	margin-right: 10px
 }
 
@@ -3407,9 +3407,9 @@ body {font-family: Verdana, sans-serif;}
 }
 
 .weekdays {
-  margin: 0;
-  padding: 10px 0;
-  background-color: #ddd;
+ margin: 0;
+    padding: 10px 0 !important;
+    background-color: #ddd !important;
 }
 
 .weekdays li {
@@ -3420,9 +3420,9 @@ body {font-family: Verdana, sans-serif;}
 }
 
 .days {
-  padding: 10px 0;
-  background: #0760a9;
-  margin: 0;
+  padding: 10px 0 !important;
+  background: #0760a9 !important;
+  margin: 0 !important;
 }
 
 .days li {
